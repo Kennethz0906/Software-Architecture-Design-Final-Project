@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Catalog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/books">📚 Library System</a>
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="/borrow/history">My Books</a>
+            <form th:action="@{/logout}" method="post" style="display: inline;">
+                <button type="submit" class="nav-link btn btn-link" style="display: inline; padding: 0; border: none; background: none; color: rgba(255,255,255,.5);">
+                Logout
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h2>Book Catalog</h2>
+    
+    <!-- Search -->
+    <form th:action="@{/books}" method="get" class="row g-3 mb-3">
+        <div class="col-auto">
+            <input type="text" name="keyword" class="form-control" placeholder="Search by title or author" th:value="${keyword}">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+        <div class="col-auto">
+            <a href="/books" class="btn btn-secondary">Clear</a>
+        </div>
+    </form>
+    
+    <!-- Book Grid -->
+    <div class="row">
+        <div th:each="book : ${books}" class="col-md-3 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${book.title}">Title</h5>
+                    <p class="card-text text-muted" th:text="${book.author}">Author</p>
+                    <p><strong>Available:</strong> <span th:text="${book.availableCopies}"/></p>
+                    <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-info btn-sm w-100">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div th:if="${books.isEmpty()}" class="alert alert-info mt-3">
+        No books found. 
+        <span th:if="${keyword}">Try a different search term.</span>
+    </div>
+</div>
+</body>
+</html>

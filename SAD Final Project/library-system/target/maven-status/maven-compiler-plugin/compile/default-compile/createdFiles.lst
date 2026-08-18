@@ -1,0 +1,14 @@
+com\library\library_system\controller\AuthController.class
+com\library\library_system\controller\BookController.class
+com\library\library_system\model\Role.class
+com\library\library_system\controller\BorrowController.class
+com\library\library_system\model\Book.class
+com\library\library_system\repository\BorrowRepository.class
+com\library\library_system\repository\UserRepository.class
+com\library\library_system\model\User.class
+com\library\library_system\repository\BookRepository.class
+com\library\library_system\service\UserService.class
+com\library\library_system\LibrarySystemApplication.class
+com\library\library_system\service\BorrowService.class
+com\library\library_system\config\SecurityConfig.class
+com\library\library_system\model\BorrowRecord.class
